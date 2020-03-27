@@ -5,7 +5,7 @@ export default function(state = initialState, action) {
     case 'GET_ALL_TOPICS':
       return {
         ...state,
-        topics: action.payload,
+        movies: action.payload,
       };
 
     default:
