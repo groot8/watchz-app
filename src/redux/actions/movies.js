@@ -1,12 +1,21 @@
 import axios from 'axios';
+import { getFirebase } from '../../../firebase';
 
 export const getAllTopics = () => dispatch => {
-  return axios
-    .get(`https://fakedata.dev/users/v1/get_random_user`)
-    .then(response => {
+  return getFirebase()
+    .database()
+    .ref('/movies')
+    .orderByChild('releaseDate')
+    .once('value')
+    .then(snapshot => {
+      let movies = [];
+      const snapshotVal = snapshot.val();
+      for (let slug in snapshotVal) {
+        movies.push(snapshotVal[slug]);
+      }
       return dispatch({
         type: 'GET_ALL_TOPICS',
-        payload: response.data,
+        payload: movies,
       });
     })
 
@@ -14,3 +23,5 @@ export const getAllTopics = () => dispatch => {
       console.log(error);
     });
 };
+// axios;
+// .get(`https://fakedata.dev/users/v1/get_random_user`)

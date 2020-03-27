@@ -9,7 +9,7 @@ const Movies = ({ getAllTopics, topics }) => {
   console.log(topics);
   return (
     <View>
-      <Text>{topics && topics.id}</Text>
+      <Text>{topics && topics[2].title}</Text>
     </View>
   );
 };
