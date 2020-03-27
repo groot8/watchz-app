@@ -8,12 +8,21 @@ const Movies = ({ getAllTopics, movies }) => {
   }, [getAllTopics]);
   console.log(movies);
   const renderMovies = () => {
-    return movies.map(movie => <Text>{movie.title}</Text>);
+    return (
+      movies &&
+      movies.map((movie) => (
+        <Text style={{ color: '#fff' }}>{movie.title}</Text>
+      ))
+    );
   };
-  return <View>{renderMovies()}</View>;
+  return (
+    <View>
+      <Text style={{ color: '#fff' }}>movies</Text>
+    </View>
+  );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   movies: state.movies.movies,
 });
 
