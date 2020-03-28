@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { getAllTopics } from '../redux/actions/movies';
+import { getAllMovies } from '../redux/actions/movies';
 import ItemCard from './ItemCard';
 
-const Movies = ({ getAllTopics, movies }) => {
+const Movies = ({ getAllMovies, movies }) => {
   useEffect(() => {
-    getAllTopics();
-  }, [getAllTopics]);
-  console.log(movies);
+    getAllMovies();
+  }, [getAllMovies]);
+
   const renderMovies = () => {
     return (
       movies &&
       movies.map((movie) => (
         // <Text style={{ color: '#fff' }}>{movie.title}</Text>
-        <ItemCard title={movie.title} thumbnail={movie.coverImage}></ItemCard>
+        <ItemCard
+          title={movie.title}
+          thumbnail={movie.coverImage}
+          key={movie.id}
+        ></ItemCard>
       ))
     );
   };
@@ -25,7 +29,7 @@ const mapStateToProps = (state) => ({
   movies: state.movies.movies,
 });
 
-export default connect(mapStateToProps, { getAllTopics })(Movies);
+export default connect(mapStateToProps, { getAllMovies })(Movies);
 
 const styles = StyleSheet.create({
   container: {
