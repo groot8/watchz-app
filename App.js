@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   statusbar: {
     height: 30,
-    backgroundColor: '#14181C',
+    backgroundColor: '#1D242B',
   },
   bottomNav: {
     backgroundColor: '#1D242B',
