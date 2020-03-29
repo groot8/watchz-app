@@ -14,8 +14,6 @@ const Movies = ({ getAllMovies, movies }) => {
   const [movieName, setName] = useState('');
   const [movieBrief, setBrief] = useState('');
   const [rating, setRating] = useState(0);
-  console.log(movieName);
-  console.log(movieBrief);
   const renderMovies = () => {
     return (
       movies &&
@@ -29,6 +27,19 @@ const Movies = ({ getAllMovies, movies }) => {
         ></ItemCard>
       ))
     );
+  };
+  const handleSubmit = () => {
+    console.log({
+      name: movieName,
+      brief: movieBrief,
+      rating: rating,
+    });
+    setName('');
+    setBrief('');
+    setRating(0);
+    setTimeout(() => {
+      setModal(false);
+    }, 500);
   };
   return (
     <>
@@ -86,6 +97,13 @@ const Movies = ({ getAllMovies, movies }) => {
               starSize={20}
               emptyStarColor={'#222B33'}
               fullStarColor={'#55B02C'}
+            />
+          </View>
+          <View style={{ marginTop: 20, width: 80, alignSelf: 'flex-end' }}>
+            <Button
+              onPress={() => handleSubmit()}
+              title="save"
+              color="#55B02C"
             />
           </View>
         </LogModal>
