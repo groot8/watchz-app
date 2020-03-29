@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import { connect } from 'react-redux';
-import { getAllMovies } from '../redux/actions/movies';
+import { getAllMovies, logNewMovie } from '../redux/actions/movies';
 import ItemCard from './ItemCard';
 import LogModal from './LogModal';
 import StarRating from 'react-native-star-rating';
+import moment from 'moment';
+import { generateID } from '../../helpers';
 
-const Movies = ({ getAllMovies, movies }) => {
+const Movies = ({ getAllMovies, movies, logNewMovie }) => {
   useEffect(() => {
     getAllMovies();
-  }, [getAllMovies]);
+  }, [getAllMovies, movies]);
   const [visible, setModal] = useState(false);
   const [movieName, setName] = useState('');
   const [movieBrief, setBrief] = useState('');
   const [rating, setRating] = useState(0);
+  const [thumbnail, setThumbnail] = useState('');
   const renderMovies = () => {
     return (
       movies &&
@@ -29,10 +39,12 @@ const Movies = ({ getAllMovies, movies }) => {
     );
   };
   const handleSubmit = () => {
-    console.log({
-      name: movieName,
+    logNewMovie({
+      id: generateID(),
+      title: movieName,
       brief: movieBrief,
       rating: rating,
+      date: moment(new Date()).format('MMMM Do YYYY'),
     });
     setName('');
     setBrief('');
@@ -117,7 +129,7 @@ const Movies = ({ getAllMovies, movies }) => {
             color="#55B02C"
           />
         </View>
-        {renderMovies()}
+        <ScrollView>{renderMovies()}</ScrollView>
       </View>
     </>
   );
@@ -127,7 +139,7 @@ const mapStateToProps = (state) => ({
   movies: state.movies.movies,
 });
 
-export default connect(mapStateToProps, { getAllMovies })(Movies);
+export default connect(mapStateToProps, { getAllMovies, logNewMovie })(Movies);
 
 const styles = StyleSheet.create({
   container: {

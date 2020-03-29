@@ -7,7 +7,11 @@ export default function (state = initialState, action) {
         ...state,
         movies: action.payload,
       };
-
+    case 'LOG_NEW_MOVIE':
+      return {
+        ...state,
+        message: action.payload,
+      };
     default:
       return {
         ...state,
