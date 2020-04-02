@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { getAllSeries } from '../redux/actions/series';
+import { getAllSeries, logNewSeries } from '../redux/actions/series';
 import ItemCard from './ItemCard';
 import LogModal from './LogModal';
 import StarRating from 'react-native-star-rating';
 import moment from 'moment';
 import { generateID } from '../../helpers';
-const Series = ({ getAllSeries, series, navigation }) => {
+const Series = ({ getAllSeries, series, navigation, logNewSeries }) => {
   useEffect(() => {
     getAllSeries();
   }, [getAllSeries]);
@@ -27,7 +27,7 @@ const Series = ({ getAllSeries, series, navigation }) => {
     );
   };
   const handleSubmit = () => {
-    logNewMovie({
+    logNewSeries({
       id: generateID(),
       title: movieName,
       brief: movieBrief,
@@ -50,7 +50,7 @@ const Series = ({ getAllSeries, series, navigation }) => {
     <>
       <LogModal visible={visible} setModal={setModal}>
         <Text style={{ color: '#CCDDEE', marginBottom: 10, fontSize: 18 }}>
-          Log a new movie
+          Log a new series
         </Text>
         <TextInput
           value={movieName}
@@ -128,7 +128,7 @@ const mapStateToProps = (state) => ({
   series: state.series.series,
 });
 
-export default connect(mapStateToProps, { getAllSeries })(Series);
+export default connect(mapStateToProps, { getAllSeries, logNewSeries })(Series);
 
 const styles = StyleSheet.create({
   container: {
