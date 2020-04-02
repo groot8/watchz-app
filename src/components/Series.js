@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getAllSeries } from '../redux/actions/series';
 import ItemCard from './ItemCard';
 
-const Series = ({ getAllSeries, series }) => {
+const Series = ({ getAllSeries, series,navigation }) => {
   useEffect(() => {
     getAllSeries();
   }, [getAllSeries]);
@@ -18,6 +18,8 @@ const Series = ({ getAllSeries, series }) => {
           thumbnail={item.coverImage}
           rating={item.rating}
           key={item.id}
+          onClick={()=>navigation.navigate('ItemDetails',item)}
+
         ></ItemCard>
       ))
     );

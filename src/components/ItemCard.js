@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image ,TouchableOpacity } from 'react-native';
 import StarRating from 'react-native-star-rating';
 
-const ItemCard = ({ title, thumbnail, rating }) => {
+const ItemCard = ({ title, thumbnail, rating,onClick }) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={()=>onClick()}>
       <View style={styles.thumbnail}>
         <Image
           source={{
@@ -33,7 +33,7 @@ const ItemCard = ({ title, thumbnail, rating }) => {
           />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

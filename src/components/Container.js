@@ -2,11 +2,48 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import Movies from './Movies';
 import Series from './Series';
 import Anime from './Anime';
+import ItemDetails from './ItemDetails';
 const MaterialBottomTabs = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator()
+const moviesStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen 
+      name='Moives'
+      component = {Movies}
+      options={{
+      headerShown: false
+    }}
+    />
+    <Stack.Screen 
+      name='ItemDetails'
+      component = {ItemDetails}
+      options={{
+      // headerShown: false
+    }}
+    />
+  </Stack.Navigator>)
+const seriesStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen 
+      name='Moives'
+      component = {Series}
+      options={{
+      headerShown: false
+    }}
+    />
+    <Stack.Screen 
+      name='ItemDetails'
+      component = {ItemDetails}
+      options={{
+      // headerShown: false
+    }}
+    />
+  </Stack.Navigator>)
 const createBottomTabs = () => {
   return (
     <MaterialBottomTabs.Navigator
@@ -19,7 +56,8 @@ const createBottomTabs = () => {
     >
       <MaterialBottomTabs.Screen
         name="Movies"
-        component={Movies}
+        // component={Movies}
+        children={moviesStack}
         options={{
           tabBarLabel: 'Movies',
           activeTintColor: 'blue',
@@ -35,7 +73,8 @@ const createBottomTabs = () => {
       />
       <MaterialBottomTabs.Screen
         name="Series"
-        component={Series}
+        // component={Series}
+        children={seriesStack}
         options={{
           tabBarLabel: 'Series',
           tabBarIcon: ({ focused, color }) => (

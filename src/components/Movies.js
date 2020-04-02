@@ -15,7 +15,7 @@ import StarRating from 'react-native-star-rating';
 import moment from 'moment';
 import { generateID } from '../../helpers';
 
-const Movies = ({ getAllMovies, movies, logNewMovie }) => {
+const Movies = ({ getAllMovies, movies, logNewMovie,navigation }) => {
   useEffect(() => {
     getAllMovies();
   }, [getAllMovies, movies]);
@@ -34,6 +34,7 @@ const Movies = ({ getAllMovies, movies, logNewMovie }) => {
           thumbnail={movie.coverImage}
           rating={movie.rating}
           key={movie.id}
+          onClick={()=>navigation.navigate('ItemDetails',movie)}
         ></ItemCard>
       ))
     );
