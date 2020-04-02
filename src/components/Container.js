@@ -9,41 +9,43 @@ import Series from './Series';
 import Anime from './Anime';
 import ItemDetails from './ItemDetails';
 const MaterialBottomTabs = createMaterialBottomTabNavigator();
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 const moviesStack = () => (
   <Stack.Navigator>
-    <Stack.Screen 
-      name='Moives'
-      component = {Movies}
+    <Stack.Screen
+      name="Moives"
+      component={Movies}
       options={{
-      headerShown: false
-    }}
+        headerShown: false,
+      }}
     />
-    <Stack.Screen 
-      name='ItemDetails'
-      component = {ItemDetails}
+    <Stack.Screen
+      name="ItemDetails"
+      component={ItemDetails}
       options={{
-      // headerShown: false
-    }}
+        headerShown: false,
+      }}
     />
-  </Stack.Navigator>)
+  </Stack.Navigator>
+);
 const seriesStack = () => (
   <Stack.Navigator>
-    <Stack.Screen 
-      name='Moives'
-      component = {Series}
+    <Stack.Screen
+      name="Moives"
+      component={Series}
       options={{
-      headerShown: false
-    }}
+        headerShown: false,
+      }}
     />
-    <Stack.Screen 
-      name='ItemDetails'
-      component = {ItemDetails}
+    <Stack.Screen
+      name="ItemDetails"
+      component={ItemDetails}
       options={{
-      // headerShown: false
-    }}
+        headerShown: false,
+      }}
     />
-  </Stack.Navigator>)
+  </Stack.Navigator>
+);
 const createBottomTabs = () => {
   return (
     <MaterialBottomTabs.Navigator

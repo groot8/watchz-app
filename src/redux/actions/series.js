@@ -24,3 +24,17 @@ export const getAllSeries = () => (dispatch) => {
       })
   );
 };
+
+export const logNewSeries = (newSeries) => (dispatch) => {
+  return getFirebase()
+    .database()
+    .ref()
+    .child(`series/${newSeries.id}`)
+    .set(newSeries)
+    .then(() => {
+      return dispatch({
+        type: 'LOG_NEW_SERIES',
+        payload: 'a new movie has been added to your diary',
+      });
+    });
+};

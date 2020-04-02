@@ -7,7 +7,11 @@ export default function (state = initialState, action) {
         ...state,
         series: action.payload,
       };
-
+    case 'LOG_NEW_SERIES':
+      return {
+        ...state,
+        message: action.payload,
+      };
     default:
       return {
         ...state,
